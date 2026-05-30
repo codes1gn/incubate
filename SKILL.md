@@ -322,7 +322,7 @@ gh repo create <slug> --public --push --source .
 
 **Goal:** Create a pattern-based test suite validating skill structure and behavior.
 
-### Test Scenarios (13 required)
+### Test Scenarios (20 required)
 
 | ID | Scenario | What It Validates |
 |----|----------|-------------------|
@@ -335,10 +335,17 @@ gh repo create <slug> --public --push --source .
 | 07 | `prd-completeness` | PRD template has all 8 required sections |
 | 08 | `review-rounds` | Review Log has 3 rounds + Final Verdict |
 | 09 | `arch-completeness` | Architecture has all 7 sections |
-| 10 | `test-coverage` | Test suite has ≥ 13 scenarios |
+| 10 | `test-coverage` | Test suite has ≥ 20 scenarios |
 | 11 | `batch-threshold` | Batch targets ≥ 1000 total checks |
 | 12 | `readme-sections` | README has all 11 required sections |
 | 13 | `website-valid` | docs/index.html valid with required elements |
+| 14 | `feature-dev-activation` | /feature-dev activation syntax and setup |
+| 15 | `feature-dev-branching` | Branch creation strategy (Copilot + Cursor) |
+| 16 | `feature-dev-tdd` | TDD-first: RED tests before implementation |
+| 17 | `feature-dev-pr-copilot` | Copilot PR creation via MCP tools |
+| 18 | `feature-dev-pr-cursor` | Cursor PR creation via git + gh CLI |
+| 19 | `feature-dev-memory` | Memory shared paths + feature entry type |
+| 20 | `feature-dev-harness` | feature_dev_harness.py structure |
 
 ### Steps
 
@@ -359,8 +366,8 @@ gh repo create <slug> --public --push --source .
 ### Test Math
 
 ```
-13 scenarios × avg 7.5 checks/scenario = 98 checks/run
-98 checks/run × 8 workers × 10 runs = 7,840 total checks (target: ≥ 1000)
+20 scenarios × avg 7.5 checks/scenario = 150 checks/run
+150 checks/run × 8 workers × 10 runs = 12,000 total checks (target: ≥ 1000)
 ```
 
 ### Steps

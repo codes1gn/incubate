@@ -53,6 +53,13 @@ Agent: "Any auth needed?"         Agent: [Phase 4] Dev complete. Tests passing.
 # Go make coffee. Come back to a shipped repo.
 ```
 
+`/feature-dev` is the companion skill for **adding features to existing projects** with a strict TDD-first workflow:
+
+```bash
+/feature-dev "add dark mode toggle" --branch feat/dark-mode
+# Tests written first. All RED → GREEN. PR opened automatically.
+```
+
 ## Quick Start
 
 **GitHub Copilot (VS Code)**
@@ -79,6 +86,8 @@ Then in your IDE:
 
 ## How It Works
 
+### `/incubate` — Full Project Pipeline
+
 ```
 Phase 0  →  Load memory + detect platform (Copilot / Cursor / local)
 Phase 1  →  Write PRD (8-section template, no user input needed)
@@ -86,12 +95,24 @@ Phase 2  →  Self-review PRD in 3 rounds (Completeness → Feasibility → Auto
 Phase 3  →  Design architecture (7 sections + Decision Log)
 Phase 4  →  Develop code (self-test checklist: no secrets, all MVP features)
 Phase 5  →  Ship to GitHub (MCP tools on Copilot, git CLI on Cursor)
-Phase 6  →  Create test framework (13 scenarios, pattern-based checks)
+Phase 6  →  Create test framework (20 scenarios, pattern-based checks)
 Phase 7  →  Batch test ≥1000 checks at ≥95% pass rate
 Phase 8  →  Write README (11-section template)
 Phase 9  →  Build GitHub Pages site + CI workflows
 Phase 10 →  Generate status report (manual: enable Pages in Settings)
 Phase 11 →  Save ≥3 memory entries for future incubations
+```
+
+### `/feature-dev` — TDD Feature Pipeline
+
+```
+Phase 0  →  Load memory + detect platform + create feat/<slug> branch
+Phase 1  →  Write Feature Spec (5 sections: problem, criteria, scope, approach, interpretation)
+Phase 2  →  TDD Design: write failing tests (ALL RED before implementation)
+Phase 3  →  Implementation: drive tests to GREEN (RED → GREEN protocol)
+Phase 4  →  Self-review: 2 rounds (code quality + acceptance criteria coverage)
+Phase 5  →  Ship: commit + PR (github-create_pull_request on Copilot / gh pr create on Cursor)
+Phase 6  →  Save ≥3 memory entries (feature facts, decision patterns, process learnings)
 ```
 
 Each phase has hard quality gates. Failures trigger automatic recovery before continuing.
@@ -137,7 +158,7 @@ Resume an interrupted incubation:
 ## Test Results
 
 ```
-13 scenarios × 7.5 checks × 8 workers × 10 runs = 7,840 checks per validation
+20 scenarios × 7.5 checks × 8 workers × 10 runs = 12,000 checks per validation
 
 Scenario                        Pass Rate
 ──────────────────────────────────────────
@@ -154,34 +175,46 @@ test-coverage                   100% ✅
 batch-threshold                 100% ✅
 readme-sections                 100% ✅
 website-valid                   100% ✅
+feature-dev-activation          100% ✅
+feature-dev-branching           100% ✅
+feature-dev-tdd                 100% ✅
+feature-dev-pr-copilot          100% ✅
+feature-dev-pr-cursor           100% ✅
+feature-dev-memory              100% ✅
+feature-dev-harness             100% ✅
 ──────────────────────────────────────────
-Total: 7,840 checks · 100% pass
+Total: 11,760 checks · 100% pass
 ```
 
-Run locally: `python tests/run_tests.py --workers 8 --runs 10`
+Run: `python tests/run_tests.py --workers 8 --runs 10`
+Harness: `python tests/feature_dev_harness.py --workers 8 --runs 10`
 
 ## Repository Structure
 
 ```
 incubate/
-├── SKILL.md              # The incubation pipeline skill
+├── SKILL.md                    # /incubate — 11-phase project pipeline
+├── FEATURE_DEV_SKILL.md        # /feature-dev — 6-phase TDD feature pipeline
 ├── data/
-│   └── user-memory.jsonl # Session store (gitignored if personal)
+│   └── user-memory.jsonl       # Session store (gitignored if personal)
 ├── tests/
-│   ├── run_tests.py      # Pattern-based test runner (13 scenarios)
-│   └── scenarios/        # Scenario documentation
+│   ├── run_tests.py            # Pattern-based test runner (20 scenarios)
+│   ├── feature_dev_harness.py  # /feature-dev harness (8 scenarios)
+│   └── scenarios/              # Scenario documentation (01–20)
 ├── docs/
-│   └── index.html        # GitHub Pages landing page
+│   └── index.html              # GitHub Pages landing page
 └── .github/workflows/
-    ├── tests.yml         # CI: run test suite on push
-    └── pages.yml         # CD: deploy GitHub Pages
+    ├── tests.yml               # CI: run test suite on push
+    └── pages.yml               # CD: deploy GitHub Pages
 ```
 
 ## Contributing
 
 PRs welcome. To add a new scenario: add an entry to `SCENARIOS` in `tests/run_tests.py`, add the corresponding `tests/scenarios/<n>-<name>.md` documentation, then run `python tests/run_tests.py` to verify ≥95% pass rate.
 
-For new platform support: update the Memory Protocol and Platform Detection sections in `SKILL.md`.
+To add `/feature-dev` scenarios: add to `SCENARIOS` in `tests/feature_dev_harness.py` and run `python tests/feature_dev_harness.py`.
+
+For new platform support: update the Memory Protocol and Platform Detection sections in `SKILL.md` and `FEATURE_DEV_SKILL.md`.
 
 ## License
 
@@ -194,5 +227,5 @@ Inspired by [durable-request](https://github.com/codes1gn/durable-request) (the 
 ---
 
 <p align="center">
-  <sub>7,840 checks · zero runtime dependencies · Copilot + Cursor + Claude · best-of-N compatible</sub>
+  <sub>11,760 checks · zero runtime dependencies · Copilot + Cursor + Claude · /incubate + /feature-dev · best-of-N compatible</sub>
 </p>
