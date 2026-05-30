@@ -86,6 +86,7 @@
   <div class="nav-links">
     <a href="#install">Install</a>
     <a href="#pipeline">Pipeline</a>
+    <a href="#feature-dev">Feature Dev</a>
     <a href="#memory">Memory</a>
     <a href="https://github.com/codes1gn/incubate">GitHub ↗</a>
   </div>
@@ -146,30 +147,45 @@
     <div class="tab" onclick="showTab(this,'claude')">Claude Code</div>
   </div>
   <div id="tab-copilot" class="tab-content active">
-    <pre><span class="comment"># VS Code + GitHub Copilot</span>
+    <pre><span class="comment"># VS Code + GitHub Copilot — install both skills</span>
 mkdir -p ~/.github/skills/incubate
 curl -sL https://raw.githubusercontent.com/codes1gn/incubate/main/SKILL.md \
   -o ~/.github/skills/incubate/SKILL.md
+curl -sL https://raw.githubusercontent.com/codes1gn/incubate/main/FEATURE_DEV_SKILL.md \
+  -o ~/.github/skills/incubate/FEATURE_DEV_SKILL.md
 
-<span class="comment"># Then in VS Code:</span>
-<span style="color:var(--green)">/incubate "your idea here"</span></pre>
+<span class="comment"># Start a new project from scratch:</span>
+<span style="color:var(--green)">/incubate "your idea here"</span>
+
+<span class="comment"># Add a feature to an existing repo:</span>
+<span style="color:var(--green)">/feature-dev "add dark mode toggle"</span></pre>
   </div>
   <div id="tab-cursor" class="tab-content">
-    <pre><span class="comment"># Cursor IDE</span>
+    <pre><span class="comment"># Cursor IDE — install both skills</span>
 mkdir -p ~/.cursor/rules
 curl -sL https://raw.githubusercontent.com/codes1gn/incubate/main/SKILL.md \
   -o ~/.cursor/rules/incubate.md
+curl -sL https://raw.githubusercontent.com/codes1gn/incubate/main/FEATURE_DEV_SKILL.md \
+  -o ~/.cursor/rules/feature-dev.md
 
-<span class="comment"># Then in Cursor:</span>
-<span style="color:var(--green)">/incubate "your idea here"</span></pre>
+<span class="comment"># Start a new project from scratch:</span>
+<span style="color:var(--green)">/incubate "your idea here"</span>
+
+<span class="comment"># Add a feature to an existing repo:</span>
+<span style="color:var(--green)">/feature-dev "add dark mode toggle"</span></pre>
   </div>
   <div id="tab-claude" class="tab-content">
-    <pre><span class="comment"># Claude Code — append to global CLAUDE.md</span>
+    <pre><span class="comment"># Claude Code — append both skills to global CLAUDE.md</span>
 curl -sL https://raw.githubusercontent.com/codes1gn/incubate/main/SKILL.md \
   >> ~/CLAUDE.md
+curl -sL https://raw.githubusercontent.com/codes1gn/incubate/main/FEATURE_DEV_SKILL.md \
+  >> ~/CLAUDE.md
 
-<span class="comment"># Then in Claude Code:</span>
-<span style="color:var(--green)">/incubate "your idea here"</span></pre>
+<span class="comment"># Start a new project from scratch:</span>
+<span style="color:var(--green)">/incubate "your idea here"</span>
+
+<span class="comment"># Add a feature to an existing repo:</span>
+<span style="color:var(--green)">/feature-dev "add dark mode toggle"</span></pre>
   </div>
 </section>
 
@@ -191,7 +207,42 @@ curl -sL https://raw.githubusercontent.com/codes1gn/incubate/main/SKILL.md \
   </ul>
 </section>
 
-<section id="memory">
+<section id="feature-dev">
+  <h2>🔧 /feature-dev — TDD Feature Pipeline</h2>
+  <div class="demo-grid">
+    <div class="terminal">
+      <div class="term-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="term-title">without /feature-dev</span></div>
+      <div class="term-body"><span class="c-blue">You:</span> add a dark mode toggle
+<span class="c-green">Agent:</span> <span class="c-orange">Here's some code...</span>
+<span class="c-red">← no tests written</span>
+<span class="c-red">← no branch created</span>
+<span class="c-red">← no PR opened</span>
+<span class="c-red">← no spec documented</span>
+<span class="c-dim">(breaks on next change)</span></div>
+    </div>
+    <div class="terminal">
+      <div class="term-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="term-title">with /feature-dev</span></div>
+      <div class="term-body"><span class="c-blue">You:</span> /feature-dev "dark mode toggle"
+<span class="c-green">✓</span> Phase 0: feat/dark-mode branch
+<span class="c-green">✓</span> Phase 1: Feature Spec written
+<span class="c-orange">●</span> Phase 2: RED tests (3 failing)
+<span class="c-green">✓</span> Phase 3: All tests GREEN
+<span class="c-green">✓</span> Phase 4: Self-review PASS
+<span class="c-green">✓</span> Phase 5: PR #42 opened</div>
+    </div>
+  </div>
+  <ul class="phase-list" style="margin-top:24px">
+    <li class="phase-item"><span class="phase-num">Phase 0</span><div><div class="phase-name">Setup & Branch</div><div class="phase-desc">Load memory, detect platform, create <code>feat/&lt;slug&gt;</code> branch</div></div></li>
+    <li class="phase-item"><span class="phase-num">Phase 1</span><div><div class="phase-name">Feature Spec</div><div class="phase-desc">5-section spec: Problem, Acceptance Criteria, Scope, Approach, Interpretation</div></div></li>
+    <li class="phase-item"><span class="phase-num">Phase 2</span><div><div class="phase-name">TDD Design</div><div class="phase-desc">Write ALL failing tests first — RED before a single line of implementation</div></div></li>
+    <li class="phase-item"><span class="phase-num">Phase 3</span><div><div class="phase-name">Implementation</div><div class="phase-desc">Drive RED → GREEN; self-test checklist ensures no regressions</div></div></li>
+    <li class="phase-item"><span class="phase-num">Phase 4</span><div><div class="phase-name">Self-Review</div><div class="phase-desc">2 rounds: code quality + acceptance criteria coverage</div></div></li>
+    <li class="phase-item"><span class="phase-num">Phase 5</span><div><div class="phase-name">Ship PR</div><div class="phase-desc">Commit + PR via MCP tools (Copilot) or <code>gh pr create</code> (Cursor)</div></div></li>
+    <li class="phase-item"><span class="phase-num">Phase 6</span><div><div class="phase-name">Memory Save</div><div class="phase-desc">Append ≥3 entries (fact / pattern / mistake) for future feature runs</div></div></li>
+  </ul>
+</section>
+
+
   <h2>Memory Layer</h2>
   <div class="terminal">
     <div class="term-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div><span class="term-title">~/.copilot/skills/incubate/data/user-memory.jsonl</span></div>
