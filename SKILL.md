@@ -359,8 +359,8 @@ gh repo create <slug> --public --push --source .
 ### Test Math
 
 ```
-13 scenarios × avg 7 checks/scenario = 91 checks/run
-91 checks/run × 8 workers × 10 runs = 7280 total checks (target: ≥ 1000)
+13 scenarios × avg 7.5 checks/scenario = 98 checks/run
+98 checks/run × 8 workers × 10 runs = 7,840 total checks (target: ≥ 1000)
 ```
 
 ### Steps

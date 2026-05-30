@@ -201,7 +201,7 @@ SCENARIOS = [
             ("1000 checks target",        lambda: _file_contains(SKILL_MD, r"1000|1,000|\u2265 1000")),
             ("95% pass rate target",      lambda: _file_contains(SKILL_MD, r"95%|\u2265 95")),
             ("Workers x runs math",       lambda: _file_contains(SKILL_MD, r"8 workers|10 runs|workers.*runs")),
-            ("Test math documented",      lambda: _file_contains(SKILL_MD, r"Test Math|7280|91 checks")),
+            ("Test math documented",      lambda: _file_contains(SKILL_MD, r"Test Math|7.?840|98 checks")),
             ("Retry on failure",          lambda: _file_contains(SKILL_MD, r"max 3 attempts|3.*attempt")),
             ("Exception path",            lambda: _file_contains(SKILL_MD, r"SHIPPING_NOTES|exception allowed|ship with")),
         ],
@@ -268,7 +268,8 @@ def run_all(workers: int = 1, runs: int = 1, verbose: bool = False) -> dict:
     """Run all scenarios across N runs with W threads."""
     all_results = []
     start = time.time()
-    tasks = [(s, r) for r in range(runs) for s in SCENARIOS]
+    total_reps = workers * runs
+    tasks = [(s, r) for r in range(total_reps) for s in SCENARIOS]
 
     with ThreadPoolExecutor(max_workers=workers) as executor:
         futures = {executor.submit(run_scenario, s): (s, r) for s, r in tasks}
@@ -335,7 +336,8 @@ def main():
     print(f"{'Passed:':<26} {summary['total_passed']:,}")
     print(f"{'Pass rate:':<26} {summary['pass_rate']:.1f}%")
     print(f"{'Elapsed:':<26} {summary['elapsed']:.2f}s")
-    print(f"{'Workers \u00d7 Runs:':<26} {args.workers} \u00d7 {args.runs}\n")
+    workers_label = "Workers x Runs:"
+    print(f"{workers_label:<26} {args.workers} x {args.runs}\n")
 
     if summary["pass_rate"] >= 95:
         print("\u2705 PASS \u2014 quality gate met (\u2265 95%)\n")

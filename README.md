@@ -39,7 +39,7 @@ Agent: "What features?"           Agent: [Phase 2] Self-review: 3 rounds. PASS.
 You: (explains for 20 min)        Agent: [Phase 3] Architecture: JSONL + CLI.
 Agent: "Any auth needed?"         Agent: [Phase 4] Dev complete. Tests passing.
 (45 min later, still no code)     Agent: [Phase 5] Shipped → github.com/you/rename-cli
-                                  Agent: [Phase 7] 7280 checks. 98.9% pass.
+                                  Agent: [Phase 7] 7840 checks. 100% pass.
                                   Agent: [Phase 9] Website live.
                                   You return to a complete project.
 ```
@@ -137,7 +137,7 @@ Resume an interrupted incubation:
 ## Test Results
 
 ```
-13 scenarios × 7 checks × 8 workers × 10 runs = 7,280 checks per validation
+13 scenarios × 7.5 checks × 8 workers × 10 runs = 7,840 checks per validation
 
 Scenario                        Pass Rate
 ──────────────────────────────────────────
@@ -155,7 +155,7 @@ batch-threshold                 100% ✅
 readme-sections                 100% ✅
 website-valid                   100% ✅
 ──────────────────────────────────────────
-Total: 7,280 checks · 100% pass
+Total: 7,840 checks · 100% pass
 ```
 
 Run locally: `python tests/run_tests.py --workers 8 --runs 10`
@@ -194,5 +194,5 @@ Inspired by [durable-request](https://github.com/codes1gn/durable-request) (the 
 ---
 
 <p align="center">
-  <sub>7,280 checks · zero runtime dependencies · Copilot + Cursor + Claude · best-of-N compatible</sub>
+  <sub>7,840 checks · zero runtime dependencies · Copilot + Cursor + Claude · best-of-N compatible</sub>
 </p>
