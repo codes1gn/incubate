@@ -1,27 +1,22 @@
-<p align="center">
-  <h1 align="center">🥚 incubate</h1>
-  <p align="center"><strong>Fully autonomous project incubation — from idea to shipped GitHub repo while you sleep.</strong></p>
-</p>
+<div align="center">
 
-<p align="center">
-  <a href="https://github.com/codes1gn/incubate/actions/workflows/tests.yml">
-    <img alt="Tests" src="https://github.com/codes1gn/incubate/actions/workflows/tests.yml/badge.svg" />
-  </a>
-  <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg" />
-  <img alt="Platforms" src="https://img.shields.io/badge/platforms-Copilot%20%7C%20Cursor%20%7C%20Claude-brightgreen" />
-  <a href="https://github.com/codes1gn/incubate">
-    <img alt="Stars" src="https://img.shields.io/github/stars/codes1gn/incubate?style=social" />
-  </a>
-</p>
+# 🔆 incubate
 
-<p align="center">
-  <a href="https://codes1gn.github.io/incubate/">Website</a> &bull;
-  <a href="#the-problem">Why</a> &bull;
-  <a href="#quick-start">Install</a> &bull;
-  <a href="#how-it-works">How It Works</a> &bull;
-  <a href="#memory-layer">Memory</a> &bull;
-  <a href="#platform-support">Platforms</a>
-</p>
+### Autonomous Side-Project Incubator — From Idea to Shipped Repo
+
+[![Tests](https://img.shields.io/github/actions/workflow/status/codes1gn/incubate/tests.yml?label=tests&style=flat-square)](https://github.com/codes1gn/incubate/actions)
+[![License: MIT](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
+[![Platforms](https://img.shields.io/badge/platforms-Copilot%20%7C%20Cursor%20%7C%20Claude-brightgreen?style=flat-square)](https://github.com/codes1gn/incubate)
+[![Stars](https://img.shields.io/github/stars/codes1gn/incubate?style=flat-square&logo=github)](https://github.com/codes1gn/incubate/stargazers)
+
+[🌐 Website](https://codes1gn.github.io/incubate) &bull;
+[❓ Why](#the-problem) &bull;
+[🚀 Quick Start](#quick-start) &bull;
+[⚙️ How It Works](#how-it-works) &bull;
+[🧠 Memory Layer](#memory-layer) &bull;
+[🖥️ Platforms](#platform-support)
+
+</div>
 
 ---
 
