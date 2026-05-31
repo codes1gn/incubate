@@ -314,7 +314,7 @@ def main():
     parser.add_argument("--verbose", "-v", action="store_true", help="Show failing check names")
     args = parser.parse_args()
 
-    est = len(SCENARIOS) * 7 * args.runs * args.workers
+    est = sum(len(s["checks"]) for s in SCENARIOS) * args.runs * args.workers
     print(f"\n\U0001f95a /incubate test suite — {len(SCENARIOS)} scenarios × {args.runs} runs × {args.workers} workers")
     print(f"   Expected: ~{est:,} checks\n")
 
